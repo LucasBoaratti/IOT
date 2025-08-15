@@ -3,11 +3,11 @@
 #include <WiFiClientSecure.h>
  
 //Enter network credentials:
-const char* ssid = "redesiot";
-const char* password = "a1234567";
+const char* ssid = "WIFI_EDUC_CFP501";
+const char* password = "SENAICAMPINAS501";
  
 //Enter Google Script Deployment ID:
-const char* GScriptId = "AKfycby9ABPLoiuWLvoqcScrpNlc0uo-KkZjiHTjkRCQk9nJW4vldCG9Us6iLi1Llse4Vx-VZQ";
+const char* GScriptId = "AKfycbxzUY7CUfXmARCqb37sJmkEBAmamIh9_P6OyMO_U1I8IEkvwhGj5efk55TeVE_vMg6H";
  
 //Enter command (insert_row or append_row) and your Google Sheets sheet name (default is sheet1):
 String url = "https://script.google.com/macros/s/" + String(GScriptId) + "/exec";
@@ -20,6 +20,7 @@ const char* fingerprint = "";
 String nomes[] = {
   "Lucas",
   "Duda",
+  "Geovanna",
 };
 
 WiFiClientSecure client;
@@ -47,13 +48,12 @@ void setup() {
   client.setInsecure();
 }
  
- 
 void loop() {
   String esteira1 = nomes[random(0, 2)];
   String esteira2 = nomes[random(0, 2)];
   String esteira3 = nomes[random(0, 2)];
 
-  String payload = "{\"command\": \"insert_row\", \"sheet_name\": \"Sheet1\", \"values\": \"" + esteira1 + "," + esteira2 + "," + esteira3 + "\"}";
+  String payload = "{\"command\": \"insert_row\", \"sheet_name\": \"sheet\", \"values\": \"" + esteira1 + "," + esteira2 + "," + esteira3 + "\"}";
  
   HTTPClient https;
   https.begin(client, url);
